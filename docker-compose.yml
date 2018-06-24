@@ -1,0 +1,20 @@
+version: "2"
+services:
+  app:
+    container_name: webapp
+    restart: always
+    image: bhushan9991/nodejsapp:v1
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    environment:
+      - MONGO_URI=nodetest1://mongo:27017/
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
